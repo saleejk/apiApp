@@ -87,7 +87,7 @@ class RegisterService {
       String email, String password, String userName) async {
     try {
       log('servicetest');
-      Response<dynamic> response = await dio.post(
+      Response response = await dio.post(
         'http://socialmedia-api-v1.onrender.com/auth/register',
         data: {
           'email': email,
@@ -96,15 +96,13 @@ class RegisterService {
         },
         options: Options(
           validateStatus: (status) {
-            return status! <
-                500; // Validate status only for status codes less than 500
+            return status! < 500;
           },
         ),
       );
       log("---------------------------------------------------");
-
+      print(response.statusCode);
       if (response.statusCode == 307) {
-        // Extract redirect URL from response headers
         String? redirectUrl = extractRedirectUrl(response.headers);
         if (redirectUrl != null) {
           return await getTokenAfterRedirect(
@@ -138,7 +136,7 @@ class RegisterService {
   Future<String?> getTokenAfterRedirect(String redirectUrl, String email,
       String password, String userName) async {
     try {
-      Response<dynamic> response = await dio.post(
+      Response response = await dio.post(
         redirectUrl,
         data: {
           'email': email,
@@ -146,7 +144,6 @@ class RegisterService {
           'username': userName,
         },
       );
-      print('helooo');
       print(response.statusCode);
       if (response.statusCode == 201) {
         final responseData = json.decode(response.data);
@@ -154,8 +151,6 @@ class RegisterService {
         return token;
       } else if (response.statusCode == 500) {
         print('Error 500');
-        // print(
-        //     'Registration failed after redirection with status code: ${response.statusCode}');
         return null;
       }
     } catch (e) {

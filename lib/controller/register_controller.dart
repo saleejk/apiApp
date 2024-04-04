@@ -1,43 +1,7 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_application_1/service/service.dart';
-
-// class RegisterController extends ChangeNotifier {
-//   TextEditingController emailC = TextEditingController();
-//   TextEditingController usernameC = TextEditingController();
-//   TextEditingController passwordC = TextEditingController();
-//   RegisterService rs = RegisterService();
-//   void createUser() async {
-//     // final Map<String, dynamic> requestModel = await {
-//     //   "email": emailC.text,
-//     //   "password": passwordC.text,
-//     //   "username": usernameC.text
-//     // };
-//     rs.createUser(usernameC.text, emailC.text, passwordC.text);
-//     notifyListeners();
-//   }
-// }
-// import 'package:flutter/material.dart';
-// import 'package:social_media/service/servise_register.dart';
-
-// class RegisterController extends ChangeNotifier {
-//   RegisterService registerSrv = RegisterService();
-//   TextEditingController usernameController = TextEditingController();
-//   TextEditingController passwordController = TextEditingController();
-//   TextEditingController emailController = TextEditingController();
-
-//   //-------------post registr------------------
-
-//   Future<void> regiterAndGetToken() async {
-//     await registerSrv.getToken(
-//         emailController.text, passwordController.text, usernameController.text);
-//     notifyListeners();
-//   }
-// }
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/service/service.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterController extends ChangeNotifier {
